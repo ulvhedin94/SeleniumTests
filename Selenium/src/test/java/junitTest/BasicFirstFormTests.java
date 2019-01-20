@@ -14,7 +14,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class BasicFirstFormTests {
 	private RemoteWebDriver webDriver;
 	private BasicFirstFormDemo basicFirstFormPage;
-	private String driverPath = "C:\\Users\\Karolina\\selenium_workbench\\Selenium\\Chrome Driver\\chromedriver.exe";
+	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
 	
 	@Before
@@ -28,7 +28,7 @@ public class BasicFirstFormTests {
 	}
 	
 	//Testing Single Input Field
-	@Test
+	@Ignore
 	public void messageTest() throws Exception {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
@@ -41,7 +41,7 @@ public class BasicFirstFormTests {
 	}
 	
 	//Testing Two Input Fields
-	@Test
+	@Ignore
 	public void valueTest() throws Exception {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
@@ -55,7 +55,7 @@ public class BasicFirstFormTests {
 		Assert.assertEquals("9", basicFirstFormPage.valueResult1Text().getText());
 	}
 		
-	@Test
+	@Ignore
 	public void nonValueTest() throws Exception {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
@@ -69,7 +69,7 @@ public class BasicFirstFormTests {
 		Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
 	}
 		
-	@Test
+	@Ignore
 	public void noInputValueTest() throws Exception {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
@@ -79,7 +79,7 @@ public class BasicFirstFormTests {
 		Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
 	}
 	
-	@Test
+	@Ignore
 	public void twoBadValuesTest() throws Exception {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
@@ -94,7 +94,7 @@ public class BasicFirstFormTests {
 	}
 	
 	//Testing everything at once
-	@Ignore
+	@Test
 	public void everythingAtOnceBasicFirstFormTest() throws Exception {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
@@ -130,8 +130,7 @@ public class BasicFirstFormTests {
 		basicFirstFormPage.valueButton1Click();
 		
 		Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
-		/*Wynikiem poniższego testu jest 8, mimo, iż to nie liczby (powinno być "NaN")
-		  zatem przyjęto, że oczekiwanym wynikiem NIE JEST "NaN", co jest prawdą*/
+		
 		basicFirstFormPage.valueTextBox1DoubleClick();
 		basicFirstFormPage.valueTextBox1Clear();
 		basicFirstFormPage.valueTextBox1Input("3Janusz");
@@ -140,14 +139,11 @@ public class BasicFirstFormTests {
 		basicFirstFormPage.valueTextBox2Input("5Zdzisław");
 		basicFirstFormPage.valueButton1Click();
 		
-		//przechodzi test
-		Assert.assertNotEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
-		//nie przechodzi
-		//Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
+		Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
 	}
 	
 	@After
-	public void setDown() throws Exception {
+	public void tearDown() throws Exception {
 
 		webDriver.close();
 		webDriver.quit();
