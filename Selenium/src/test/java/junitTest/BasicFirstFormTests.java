@@ -27,12 +27,17 @@ public class BasicFirstFormTests {
 		Thread.sleep(3000);
 	}
 	
-	//Testing Single Input Field
-	@Ignore
-	public void messageTest() throws Exception {
+	//Open Chrome
+	private void runChrome() {
 		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
 		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
 		basicFirstFormPage.initializeElements(webDriver);
+	}
+	
+	//Testing Single Input Field
+	@Test
+	public void messageTest() throws Exception {
+		runChrome();
 		basicFirstFormPage.messageTextBox1Click();
 		basicFirstFormPage.messageTextBox1Input("Janusz");
 		basicFirstFormPage.messageButton1Click();
@@ -41,11 +46,9 @@ public class BasicFirstFormTests {
 	}
 	
 	//Testing Two Input Fields
-	@Ignore
+	@Test
 	public void valueTest() throws Exception {
-		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
-		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
-		basicFirstFormPage.initializeElements(webDriver);
+		runChrome();
 		basicFirstFormPage.valueTextBox1Click();
 		basicFirstFormPage.valueTextBox1Input("4");
 		basicFirstFormPage.valueTextBox2Click();
@@ -55,11 +58,9 @@ public class BasicFirstFormTests {
 		Assert.assertEquals("9", basicFirstFormPage.valueResult1Text().getText());
 	}
 		
-	@Ignore
+	@Test
 	public void nonValueTest() throws Exception {
-		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
-		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
-		basicFirstFormPage.initializeElements(webDriver);
+		runChrome();
 		basicFirstFormPage.valueTextBox1Click();
 		basicFirstFormPage.valueTextBox1Input("Janusz");
 		basicFirstFormPage.valueTextBox2Click();
@@ -69,21 +70,17 @@ public class BasicFirstFormTests {
 		Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
 	}
 		
-	@Ignore
+	@Test
 	public void noInputValueTest() throws Exception {
-		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
-		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
-		basicFirstFormPage.initializeElements(webDriver);
+		runChrome();
 		basicFirstFormPage.valueButton1Click();
 		
 		Assert.assertEquals("NaN", basicFirstFormPage.valueResult1Text().getText());
 	}
 	
-	@Ignore
+	@Test
 	public void twoBadValuesTest() throws Exception {
-		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
-		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
-		basicFirstFormPage.initializeElements(webDriver);
+		runChrome();
 		basicFirstFormPage.valueTextBox1Click();
 		basicFirstFormPage.valueTextBox1Input("3Janusz");
 		basicFirstFormPage.valueTextBox2Click();
@@ -94,11 +91,9 @@ public class BasicFirstFormTests {
 	}
 	
 	//Testing everything at once
-	@Test
+	@Ignore
 	public void everythingAtOnceBasicFirstFormTest() throws Exception {
-		basicFirstFormPage = new BasicFirstFormDemo(webDriver, action);
-		basicFirstFormPage.openUrl(BasicFirstFormDemo.getUrl());
-		basicFirstFormPage.initializeElements(webDriver);
+		runChrome();
 		basicFirstFormPage.messageTextBox1Click();
 		basicFirstFormPage.messageTextBox1Input("Janusz");
 		basicFirstFormPage.messageButton1Click();
@@ -144,8 +139,7 @@ public class BasicFirstFormTests {
 	
 	@After
 	public void tearDown() throws Exception {
-
-		webDriver.close();
-		webDriver.quit();
+		if (webDriver != null)
+			webDriver.quit();
 	}
 }

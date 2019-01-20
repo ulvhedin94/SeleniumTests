@@ -58,7 +58,7 @@ public class BasicSelectDropdownDemoTests {
 	public void selectCaliforniaAllSelectedTest() throws Exception {
 		runChrome();
 		basicSelectDropdownDemo.selectCaliforniaClick();
-		basicSelectDropdownDemo.buttonFirstSelectedClick();
+		basicSelectDropdownDemo.buttonGetAllSelectedClick();
 		Assert.assertEquals("Options selected are : California", basicSelectDropdownDemo.messageResult2Text().getText());
 	}
 	
@@ -76,8 +76,22 @@ public class BasicSelectDropdownDemoTests {
 		runChrome();
 		basicSelectDropdownDemo.selectCaliforniaClick();
 		basicSelectDropdownDemo.selectOhioClick();
+		basicSelectDropdownDemo.buttonGetAllSelectedClick();
+		Assert.assertEquals("Options selected are : Ohio", basicSelectDropdownDemo.messageResult2Text().getText());
+	}
+	
+	@Test
+	public void selectNothingFirstSelectedTest() throws Exception {
+		runChrome();
 		basicSelectDropdownDemo.buttonFirstSelectedClick();
-		Assert.assertEquals("First selected option is : Ohio", basicSelectDropdownDemo.messageResult2Text().getText());
+		Assert.assertEquals("First selected option is : undefined", basicSelectDropdownDemo.messageResult2Text().getText());
+	}
+	
+	@Test
+	public void selectNothingAllSelectedTest() throws Exception {
+		runChrome();
+		basicSelectDropdownDemo.buttonGetAllSelectedClick();
+		Assert.assertEquals("Options selected are :", basicSelectDropdownDemo.messageResult2Text().getText());
 	}
 	
 	@Test
@@ -250,8 +264,7 @@ public class BasicSelectDropdownDemoTests {
 	
 	@After
 	public void tearDown() throws Exception {
-
-		//webDriver.close();
+		if (webDriver != null)
 		webDriver.quit();
 	}
 }
