@@ -7,17 +7,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
 import org.junit.After;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-/*To Do:
- - change waiting tests (takes too long)
- */
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 public class BootstrapAlertMessagesTests {
 	private RemoteWebDriver webDriver;
 	private BootstrapAlertMessagesDemo bootstrapAlertMessagesPage;
 	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
+	
 	@Before
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", driverPath);
@@ -66,6 +68,7 @@ public class BootstrapAlertMessagesTests {
 		bootstrapAlertMessagesPage.buttonAutoSuccessClick();	
 
 		Assert.assertEquals("I'm an autocloseable success message. I will hide in 5 seconds.", bootstrapAlertMessagesPage.alertAutoSuccessText().getText());
+		
 	}
 	
 	@Test
@@ -80,14 +83,17 @@ public class BootstrapAlertMessagesTests {
 	}
 	
 	@Test
-	public void autocloseableSuccessAlertWait5SecondsTest() throws Exception {
+	public void autocloseableSuccessAlertWaitUntilDisplayedTest() throws Exception {
 		runChrome();
 		bootstrapAlertMessagesPage.buttonAutoSuccessClick();
 
 		Assert.assertEquals("I'm an autocloseable success message. I will hide in 5 seconds.", bootstrapAlertMessagesPage.alertAutoSuccessText().getText());
 		Assert.assertTrue(bootstrapAlertMessagesPage.alertAutoSuccessIsDisplayed());
 		
-		Thread.sleep(6000);
+		//Thread.sleep(6000);
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[1]")));
+
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoSuccessIsDisplayed());
 	}
 	
@@ -143,7 +149,10 @@ public class BootstrapAlertMessagesTests {
 		Assert.assertEquals("I'm an autocloseable warning message. I will hide in 3 seconds.", bootstrapAlertMessagesPage.alertAutoWarningText().getText());
 		Assert.assertTrue(bootstrapAlertMessagesPage.alertAutoWarningIsDisplayed());
 		
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]")));
+		
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoWarningIsDisplayed());
 	}
 	
@@ -199,7 +208,10 @@ public class BootstrapAlertMessagesTests {
 		Assert.assertEquals("I'm an autocloseable danger message. I will hide in 5 seconds.", bootstrapAlertMessagesPage.alertAutoDangerText().getText());
 		Assert.assertTrue(bootstrapAlertMessagesPage.alertAutoDangerIsDisplayed());
 		
-		Thread.sleep(6000);
+		//Thread.sleep(6000);
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[5]")));
+		
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoDangerIsDisplayed());
 	}
 	
@@ -255,7 +267,10 @@ public class BootstrapAlertMessagesTests {
 		Assert.assertEquals("I'm an autocloseable info message. I will hide in 6 seconds.", bootstrapAlertMessagesPage.alertAutoInfoText().getText());
 		Assert.assertTrue(bootstrapAlertMessagesPage.alertAutoInfoIsDisplayed());
 		
-		Thread.sleep(7000);
+		//Thread.sleep(7000);
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[7]")));
+		
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoInfoIsDisplayed());
 	}
 	
@@ -307,20 +322,27 @@ public class BootstrapAlertMessagesTests {
 		Assert.assertFalse(bootstrapAlertMessagesPage.exitNormalDangerIsDisplayed());
 		Assert.assertFalse(bootstrapAlertMessagesPage.exitNormalInfoIsDisplayed());
 		
-		/*
-		//With time:
-		Thread.sleep(7000);
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[3]")));
+		
+		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoWarningIsEnabled());
+		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoWarningIsDisplayed());
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[1]")));
 		
 		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoSuccessIsEnabled());
-		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoWarningIsEnabled());
-		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoDangerIsEnabled());
-		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoInfoIsEnabled());
-		
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoSuccessIsDisplayed());
-		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoWarningIsDisplayed());
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[5]")));
+		
+		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoDangerIsEnabled());
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoDangerIsDisplayed());
+		
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[7]")));
+		
+		Assert.assertTrue(bootstrapAlertMessagesPage.buttonAutoInfoIsEnabled());
 		Assert.assertFalse(bootstrapAlertMessagesPage.alertAutoInfoIsDisplayed());
-		*/
 	}
 	
 	@After
