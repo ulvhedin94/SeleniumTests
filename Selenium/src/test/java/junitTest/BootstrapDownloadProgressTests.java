@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
 import org.junit.After;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -37,7 +38,7 @@ public class BootstrapDownloadProgressTests {
 	}
 	
 	@Test
-	public void clickAndWaitUntilProgressFinishByTextTest() throws Exception {
+	public void clickAndWaitUntilProgressFinishesByTextTest() throws Exception {
 		runChrome();
 		
 		Assert.assertFalse(bootstrapDownloadProgressDemo.buttonDownloadGet().getAttribute("class").contains("active"));
@@ -53,6 +54,21 @@ public class BootstrapDownloadProgressTests {
 
 	}
 	
+	@Test
+	public void clickAndWaitUntilProgressFinishesByCircleClassTest() throws Exception {
+		runChrome();
+		
+		Assert.assertFalse(bootstrapDownloadProgressDemo.buttonDownloadGet().getAttribute("class").contains("active"));
+		
+		bootstrapDownloadProgressDemo.buttonDownloadClick();
+		
+		Assert.assertTrue(bootstrapDownloadProgressDemo.buttonDownloadGet().getAttribute("class").contains("active"));
+		
+		WebDriverWait wait = new WebDriverWait(webDriver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[id='circle'][class='circle end complate']")));
+		
+		Assert.assertEquals("circle end complate", bootstrapDownloadProgressDemo.progressCircleGet().getAttribute("class").toString());
+	}
 	
 	@After
 	public void tearDown() throws Exception {

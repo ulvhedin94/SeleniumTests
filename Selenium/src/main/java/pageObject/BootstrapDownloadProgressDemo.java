@@ -47,6 +47,5 @@ public class BootstrapDownloadProgressDemo extends BasePage{
 		progressCircle = webDriver.findElement(By.xpath("//*[@id=\"circle\"]"));
 		downloadProgressResult = webDriver.findElement(By.xpath("//*[@id=\"circle\"]/div/div[1]"));
 		return this;
-	}
-	
+	}	
 }
