@@ -53,6 +53,7 @@ public class BootstrapDownloadProgressTests {
 
 	}
 	
+	
 	@After
 	public void tearDown() throws Exception {
 		if (webDriver != null)
