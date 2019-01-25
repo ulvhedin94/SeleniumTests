@@ -55,7 +55,18 @@ public class TablePaginationTests {
 		runChrome();
 		
 		Assert.assertEquals(13, tablePaginationDemo.listGroupSize());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(0).isDisplayed());
+		
+		for (int i = 0; i < tablePaginationDemo.listGroupSize(); i++) {
+			Assert.assertTrue(tablePaginationDemo.listGroupElement(i).isDisplayed());
+			
+			if ((i+1) % 5 == 0)
+			{
+				Assert.assertFalse(tablePaginationDemo.listGroupElement(i+1).isDisplayed());
+				tablePaginationDemo.buttonNextPageClick();
+				Assert.assertFalse(tablePaginationDemo.listGroupElement(i).isDisplayed());
+			}
+		}
+		/*Assert.assertTrue(tablePaginationDemo.listGroupElement(0).isDisplayed());
 		Assert.assertTrue(tablePaginationDemo.listGroupElement(1).isDisplayed());
 		Assert.assertTrue(tablePaginationDemo.listGroupElement(2).isDisplayed());
 		Assert.assertTrue(tablePaginationDemo.listGroupElement(3).isDisplayed());
@@ -77,7 +88,7 @@ public class TablePaginationTests {
 		Assert.assertFalse(tablePaginationDemo.listGroupElement(9).isDisplayed());
 		Assert.assertTrue(tablePaginationDemo.listGroupElement(10).isDisplayed());
 		Assert.assertTrue(tablePaginationDemo.listGroupElement(11).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(12).isDisplayed());
+		Assert.assertTrue(tablePaginationDemo.listGroupElement(12).isDisplayed());*/
 	}
 	
 	@After

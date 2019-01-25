@@ -19,12 +19,14 @@ public class BootstrapDownloadProgressTests {
 	private BootstrapDownloadProgressDemo bootstrapDownloadProgressDemo;
 	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
+	WebDriverWait wait;
 	
 	@Before
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
+		wait = new WebDriverWait(webDriver, 30);
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		webDriver.manage().window().maximize();
 		Thread.sleep(3000);
@@ -47,11 +49,8 @@ public class BootstrapDownloadProgressTests {
 		
 		Assert.assertTrue(bootstrapDownloadProgressDemo.buttonDownloadGet().getAttribute("class").contains("active"));
 		
-		WebDriverWait wait = new WebDriverWait(webDriver, 30);
 		wait.until(ExpectedConditions.textToBePresentInElement(bootstrapDownloadProgressDemo.downloadProgressResultText(), "100%"));
-		
 		Assert.assertEquals("100%", bootstrapDownloadProgressDemo.downloadProgressResultText().getText());
-
 	}
 	
 	@Test
@@ -64,7 +63,6 @@ public class BootstrapDownloadProgressTests {
 		
 		Assert.assertTrue(bootstrapDownloadProgressDemo.buttonDownloadGet().getAttribute("class").contains("active"));
 		
-		WebDriverWait wait = new WebDriverWait(webDriver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[id='circle'][class='circle end complate']")));
 		
 		Assert.assertEquals("circle end complate", bootstrapDownloadProgressDemo.progressCircleGet().getAttribute("class").toString());
