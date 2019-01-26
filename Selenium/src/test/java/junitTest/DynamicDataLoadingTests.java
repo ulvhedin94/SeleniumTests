@@ -3,10 +3,13 @@ package junitTest;
 import pageObject.*;
 
 import java.util.concurrent.TimeUnit;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.After;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -18,7 +21,8 @@ public class DynamicDataLoadingTests {
 	private DynamicDataLoadingDemo dynamicDataLoadingDemo;
 	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
-	WebDriverWait wait;
+	private WebDriverWait wait;
+	private WebElement image;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -43,15 +47,29 @@ public class DynamicDataLoadingTests {
 		runChrome();
 		dynamicDataLoadingDemo.buttonGetNewUserClick();
 		wait.until(ExpectedConditions.textToBePresentInElement(dynamicDataLoadingDemo.loadingAreaGet(), "Name"));
+		
+		Assert.assertTrue(dynamicDataLoadingDemo.loadingAreaGet().getText().contains("First Name"));
+		Assert.assertTrue(dynamicDataLoadingDemo.loadingAreaGet().getText().contains("Last Name"));
+		
+		image = webDriver.findElement(By.xpath("//*[@id=\"loading\"]/img"));
+		
+		Assert.assertTrue(image.getAttribute("src").contains(".jpg"));
+		
 	}
 	
 	@Test
 	public void clickAndWaitUntilRandomUserShowsThreeTimesTest() throws Exception {
 		runChrome();
-		WebDriverWait wait = new WebDriverWait(webDriver, 10);
 		for (int i = 0; i < 3; i++) {
 			dynamicDataLoadingDemo.buttonGetNewUserClick();
 			wait.until(ExpectedConditions.textToBePresentInElement(dynamicDataLoadingDemo.loadingAreaGet(), "Name"));
+			
+			Assert.assertTrue(dynamicDataLoadingDemo.loadingAreaGet().getText().contains("First Name"));
+			Assert.assertTrue(dynamicDataLoadingDemo.loadingAreaGet().getText().contains("Last Name"));
+			
+			image = webDriver.findElement(By.xpath("//*[@id=\"loading\"]/img"));
+			
+			Assert.assertTrue(image.getAttribute("src").contains(".jpg"));
 		}
 	}
 	
