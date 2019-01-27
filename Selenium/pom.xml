@@ -46,6 +46,11 @@
 	    <artifactId>fluent-selenium</artifactId>
 	    <version>1.7</version>
 	</dependency>
+	<dependency>
+	    <groupId>org.jbehave</groupId>
+	    <artifactId>jbehave-core</artifactId>
+	    <version>4.3.5</version>
+	</dependency>
   </dependencies>
    <build>
   <pluginManagement>

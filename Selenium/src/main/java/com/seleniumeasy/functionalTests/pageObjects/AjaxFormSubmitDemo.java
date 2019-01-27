@@ -1,12 +1,15 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class AjaxFormSubmitDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/ajax-form-submit-demo.html";
+	private static String pageUrl = "/ajax-form-submit-demo.html";
 	protected RemoteWebDriver webDriver;
 	protected Actions action;
 	
@@ -16,7 +19,7 @@ public class AjaxFormSubmitDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	//Ajax Form Submit elements

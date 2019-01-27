@@ -1,6 +1,5 @@
-package junitTest;
+package com.seleniumeasy.functionalTests.testCases;
 
-import pageObject.*;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -11,15 +10,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import com.seleniumeasy.functionalTests.data.Data;
+import com.seleniumeasy.functionalTests.pageObjects.*;
+
 public class TablePaginationTests {
 	private RemoteWebDriver webDriver;
 	private TablePaginationDemo tablePaginationDemo;
-	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
 	
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", driverPath);
+		System.setProperty("webdriver.chrome.driver", Data.DRIVER_PATH);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -34,7 +35,7 @@ public class TablePaginationTests {
 		tablePaginationDemo.initializeElements(webDriver);
 	}
 	
-	@Ignore
+	@Test
 	public void buttonsPerPageDisplayTest() throws Exception {
 		runChrome();
 		
@@ -66,29 +67,6 @@ public class TablePaginationTests {
 				Assert.assertFalse(tablePaginationDemo.listGroupElement(i).isDisplayed());
 			}
 		}
-		/*Assert.assertTrue(tablePaginationDemo.listGroupElement(0).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(1).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(2).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(3).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(4).isDisplayed());
-		Assert.assertFalse(tablePaginationDemo.listGroupElement(5).isDisplayed());
-		
-		tablePaginationDemo.buttonNextPageClick();
-		
-		Assert.assertFalse(tablePaginationDemo.listGroupElement(4).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(5).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(6).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(7).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(8).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(9).isDisplayed());
-		Assert.assertFalse(tablePaginationDemo.listGroupElement(10).isDisplayed());
-		
-		tablePaginationDemo.buttonNextPageClick();
-		
-		Assert.assertFalse(tablePaginationDemo.listGroupElement(9).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(10).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(11).isDisplayed());
-		Assert.assertTrue(tablePaginationDemo.listGroupElement(12).isDisplayed());*/
 	}
 	
 	@After

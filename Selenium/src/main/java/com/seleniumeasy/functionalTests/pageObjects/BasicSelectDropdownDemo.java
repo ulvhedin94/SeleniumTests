@@ -1,13 +1,16 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class BasicSelectDropdownDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html";
+	private static String pageUrl = "/basic-select-dropdown-demo.html";
 	protected RemoteWebDriver webDriver;
 	protected Actions action;
 	
@@ -17,7 +20,7 @@ public class BasicSelectDropdownDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	//Select List Demo elements
@@ -177,7 +180,7 @@ public class BasicSelectDropdownDemo extends BasePage{
 	}
 	
 	
-	//initialization of all elements
+	//Initialize All Elements
 	public BasicSelectDropdownDemo initializeElements(RemoteWebDriver webDriver) {		
 		//Select List Demo
 		dropdownList = webDriver.findElement(By.xpath("//*[@id=\"select-demo\"]"));

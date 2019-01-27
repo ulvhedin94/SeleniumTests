@@ -1,13 +1,15 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class BasicFirstFormDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/basic-first-form-demo.html";
-	
+	private static String pageUrl = "/basic-first-form-demo.html";
 	protected RemoteWebDriver webDriver;
 	
 	public BasicFirstFormDemo(RemoteWebDriver webDriver, Actions action) {
@@ -16,7 +18,7 @@ public class BasicFirstFormDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	protected Actions action;
@@ -102,7 +104,7 @@ public class BasicFirstFormDemo extends BasePage{
 		return this;
 	}
 	
-	//initialization of all elements
+	//Initialize All Elements
 	public BasicFirstFormDemo initializeElements(RemoteWebDriver webDriver) {
 		messageTextBox1 = webDriver.findElement(By.xpath("//*[@id=\"user-message\"]"));
 		messageButton1 = webDriver.findElement(By.xpath("//*[@id=\"get-input\"]/button"));

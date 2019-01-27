@@ -1,12 +1,15 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class BootstrapAlertMessagesDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/bootstrap-alert-messages-demo.html";
+	private static String pageUrl = "/bootstrap-alert-messages-demo.html";
 	protected RemoteWebDriver webDriver;
 	protected Actions action;
 	
@@ -16,7 +19,7 @@ public class BootstrapAlertMessagesDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	//Bootstrap alert messages elements
@@ -210,5 +213,4 @@ public class BootstrapAlertMessagesDemo extends BasePage{
 		exitNormalInfo = webDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/div[8]/button"));
 		return this;
 	}
-	
 }

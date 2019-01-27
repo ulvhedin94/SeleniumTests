@@ -1,13 +1,16 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class TablePaginationDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/table-pagination-demo.html";
+	private static String pageUrl = "/table-pagination-demo.html";
 	protected RemoteWebDriver webDriver;
 	protected Actions action;
 	
@@ -17,7 +20,7 @@ public class TablePaginationDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	//Bootstrap Dual List Box elements
@@ -89,5 +92,4 @@ public class TablePaginationDemo extends BasePage{
 		listGroup = webDriver.findElements(By.xpath("//*[@id=\"myTable\"]/tr"));
 		return this;
 	}
-	
 }

@@ -1,4 +1,4 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 

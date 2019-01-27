@@ -1,6 +1,5 @@
-package junitTest;
+package com.seleniumeasy.functionalTests.testCases;
 
-import pageObject.*;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -14,19 +13,21 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.seleniumeasy.functionalTests.data.Data;
+import com.seleniumeasy.functionalTests.pageObjects.*;
+
 public class BootstrapDownloadProgressTests {
 	private RemoteWebDriver webDriver;
 	private BootstrapDownloadProgressDemo bootstrapDownloadProgressDemo;
-	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
 	WebDriverWait wait;
 	
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", driverPath);
+		System.setProperty("webdriver.chrome.driver", Data.DRIVER_PATH);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
-		wait = new WebDriverWait(webDriver, 30);
+		wait = new WebDriverWait(webDriver, Data.dialogTimeout);
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		webDriver.manage().window().maximize();
 		Thread.sleep(3000);

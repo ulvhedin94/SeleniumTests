@@ -1,12 +1,15 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class TableRecordsFilterDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/table-records-filter-demo.html";
+	private static String pageUrl = "/table-records-filter-demo.html";
 	protected RemoteWebDriver webDriver;
 	protected Actions action;
 	
@@ -16,7 +19,7 @@ public class TableRecordsFilterDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	//Filter Records elements

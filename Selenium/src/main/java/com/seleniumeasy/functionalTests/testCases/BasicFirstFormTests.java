@@ -1,6 +1,5 @@
-package junitTest;
+package com.seleniumeasy.functionalTests.testCases;
 
-import pageObject.*;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -11,15 +10,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import com.seleniumeasy.functionalTests.data.Data;
+import com.seleniumeasy.functionalTests.pageObjects.*;
+
 public class BasicFirstFormTests {
 	private RemoteWebDriver webDriver;
 	private BasicFirstFormDemo basicFirstFormPage;
-	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
+	//private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
 	
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", driverPath);
+		System.setProperty("webdriver.chrome.driver", Data.DRIVER_PATH);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

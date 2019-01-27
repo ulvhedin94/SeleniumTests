@@ -1,6 +1,4 @@
-package junitTest;
-
-import pageObject.*;
+package com.seleniumeasy.functionalTests.testCases;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
@@ -16,20 +14,22 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.seleniumeasy.functionalTests.data.Data;
+import com.seleniumeasy.functionalTests.pageObjects.*;
+
 public class DynamicDataLoadingTests {
 	private RemoteWebDriver webDriver;
 	private DynamicDataLoadingDemo dynamicDataLoadingDemo;
-	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
 	private WebDriverWait wait;
 	private WebElement image;
 	
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", driverPath);
+		System.setProperty("webdriver.chrome.driver", Data.DRIVER_PATH);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
-		wait = new WebDriverWait(webDriver, 10);
+		wait = new WebDriverWait(webDriver, Data.defaultTimeout);
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		webDriver.manage().window().maximize();
 		Thread.sleep(3000);
@@ -54,7 +54,6 @@ public class DynamicDataLoadingTests {
 		image = webDriver.findElement(By.xpath("//*[@id=\"loading\"]/img"));
 		
 		Assert.assertTrue(image.getAttribute("src").contains(".jpg"));
-		
 	}
 	
 	@Test

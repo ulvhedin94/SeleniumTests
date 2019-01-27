@@ -1,6 +1,5 @@
-package junitTest;
+package com.seleniumeasy.functionalTests.testCases;
 
-import pageObject.*;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -11,15 +10,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import com.seleniumeasy.functionalTests.data.Data;
+import com.seleniumeasy.functionalTests.pageObjects.*;
+
 public class BootstrapDualListBoxTests {
 	private RemoteWebDriver webDriver;
 	private BootstrapDualListBoxDemo bootstrapDualListBoxDemo;
-	private String driverPath = "C:\\Users\\Karolina\\git\\SeleniumTests\\Selenium\\Chrome Driver\\chromedriver.exe";
 	private Actions action;
 	
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", driverPath);
+		System.setProperty("webdriver.chrome.driver", Data.DRIVER_PATH);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -73,6 +74,7 @@ public class BootstrapDualListBoxTests {
 		Assert.assertTrue(bootstrapDualListBoxDemo.listGroup2IsEmpty());
 		Assert.assertEquals(10, bootstrapDualListBoxDemo.listGroup1Size());
 	}
+	
 	@Test
 	public void twoRowsToLeftCheckIfListGroup2ContainsStringIsDisplayedTest() throws Exception {
 		runChrome();
@@ -93,6 +95,7 @@ public class BootstrapDualListBoxTests {
 		Assert.assertTrue(bootstrapDualListBoxDemo.listGroup2Element(2).getText().contains("i"));
 		Assert.assertTrue(bootstrapDualListBoxDemo.listGroup2Element(2).isDisplayed());
 	}
+	
 	@Test
 	public void checkIfRowContainsStringIsDisplayedTest() throws Exception {
 		runChrome();
@@ -112,6 +115,7 @@ public class BootstrapDualListBoxTests {
 		Assert.assertFalse(bootstrapDualListBoxDemo.listGroup1Element(4).getText().contains("@"));
 		Assert.assertFalse(bootstrapDualListBoxDemo.listGroup1Element(4).isDisplayed());
 	}
+	
 	@After
 	public void tearDown() throws Exception {
 		if (webDriver != null)

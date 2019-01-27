@@ -1,14 +1,17 @@
-package pageObject;
+package com.seleniumeasy.functionalTests.pageObjects;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import com.seleniumeasy.functionalTests.data.Data;
+
 import org.openqa.selenium.interactions.Actions;
 
 public class BootstrapDualListBoxDemo extends BasePage{
-	private final static String pageUrl = "https://www.seleniumeasy.com/test/bootstrap-dual-list-box-demo.html";
+	private static String pageUrl = "/bootstrap-dual-list-box-demo.html";
 	protected RemoteWebDriver webDriver;
 	protected Actions action;
 	
@@ -18,7 +21,7 @@ public class BootstrapDualListBoxDemo extends BasePage{
 	}
 	
 	public static String getUrl() {
-		return pageUrl;
+		return Data.URL+pageUrl;
 	}
 	
 	//Bootstrap Dual List Box elements
@@ -129,5 +132,4 @@ public class BootstrapDualListBoxDemo extends BasePage{
 		buttonToRightBox = webDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/div[2]/button[2]"));
 		return this;
 	}
-	
 }
