@@ -1,4 +1,4 @@
-package testSuit;
+package com.seleniumeasy.testSuits;
 
 import java.util.Arrays;
 import java.util.List;
