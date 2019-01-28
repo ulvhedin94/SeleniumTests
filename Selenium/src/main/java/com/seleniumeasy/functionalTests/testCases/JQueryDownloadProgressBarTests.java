@@ -26,7 +26,7 @@ public class JQueryDownloadProgressBarTests {
 	
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", Data.URL);
+		System.setProperty("webdriver.chrome.driver", Data.DRIVER_PATH);
 		webDriver = new ChromeDriver();
 		action = new Actions(webDriver);
 		wait = new WebDriverWait(webDriver, Data.defaultTimeout);
